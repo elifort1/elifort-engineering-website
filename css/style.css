@@ -202,6 +202,15 @@ section:not(.hero):nth-of-type(even) { background-color: var(--background-light)
 .contact-details-list i { font-size: 1.5rem; color: var(--secondary-color); margin-top: 5px; width: 25px; text-align: center; }
 .map-section { padding: 0; line-height: 0; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin-top: 3rem; }
 
+.project-description {
+    text-align: left;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: #555;
+}
+
 /* 8. FOOTER - CORRECTED ALIGNMENT */
 .footer { background-color: var(--primary-color); color: var(--text-color-light); padding: 60px 0 20px 0; }
 .footer-grid { 
