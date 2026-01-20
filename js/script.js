@@ -1,126 +1,169 @@
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * ELIFORT ENGINEERING LIMITED - INTELLIGENCE ENGINE V3.0
+ * Concept: Technical Precision, Structural Integrity, & Advanced System Logic
+ */
 
-    // 1. PARTICLE NETWORK ANIMATION (tsParticles)
-    if (document.getElementById('tsparticles')) {
-        tsParticles.load('tsparticles', {
-            fpsLimit: 60,
-            interactivity: {
-                events: {
-                    onHover: { enable: true, mode: 'repulse' },
-                    resize: true,
-                },
-                modes: { repulse: { distance: 100, duration: 0.4 } },
-            },
-            particles: {
-                color: { value: '#ffffff' },
-                links: { color: '#ffffff', distance: 150, enable: true, opacity: 0.2, width: 1 },
-                move: { direction: 'none', enable: true, outModes: { default: 'bounce' }, random: false, speed: 1, straight: false },
-                number: { density: { enable: true, area: 800 }, value: 80 },
-                opacity: { value: 0.2 },
-                shape: { type: 'circle' },
-                size: { value: { min: 1, max: 5 } },
-            },
-            detectRetina: true,
-        });
+document.addEventListener("DOMContentLoaded", () => {
+  "use strict";
+
+  // 1. PERFORMANCE MONITOR (System Health Indicator)
+  const startTime = performance.now();
+  window.addEventListener("load", () => {
+    const loadTime = ((performance.now() - startTime) / 1000).toFixed(2);
+    console.log(
+      `%c EliFort System Status: Operational | Load Time: ${loadTime}s`,
+      "color: #b85b40; font-weight: bold;"
+    );
+  });
+
+  // 2. KAMPALA PRECISION CLOCK
+  const updateClock = () => {
+    const clockElements = document.querySelectorAll(".status-clock");
+    if (clockElements.length > 0) {
+      const ugandaTime = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Africa/Kampala",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      }).format(new Date());
+      clockElements.forEach((el) => (el.textContent = `${ugandaTime} EAT`));
     }
+  };
+  setInterval(updateClock, 1000);
+  updateClock();
 
-// 2. BLUEPRINT SCAN - INTERACTIVE HEADING (FINAL PROFESSIONAL EFFECT)
-document.querySelectorAll('.interactive-heading').forEach(heading => {
-    const text = heading.textContent.trim();
-    heading.innerHTML = ''; // Clear existing text
-    const chars = text.split('').map(char => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        // Ensure spaces don't collapse but remain non-interactive
-        if (char === ' ') {
-            span.style.display = 'inline'; 
+  // 3. TECHNICAL RADAR PING (Global Click Interaction)
+  // Replaces childish bursts with a professional 'sonar' pulse
+  document.addEventListener("click", (e) => {
+    const ping = document.createElement("div");
+    ping.className = "radar-ping";
+    ping.style.left = `${e.clientX}px`;
+    ping.style.top = `${e.clientY}px`;
+    document.body.appendChild(ping);
+    setTimeout(() => ping.remove(), 800);
+  });
+
+  // 4. DATA DECRYPTION EFFECT (Hero Title)
+  class TechnicalScramble {
+    constructor(el) {
+      this.el = el;
+      this.chars = "01ABCDEF-/_+X#";
+      this.update = this.update.bind(this);
+    }
+    setText(newText) {
+      const oldText = this.el.innerText;
+      const length = Math.max(oldText.length, newText.length);
+      const promise = new Promise((resolve) => (this.resolve = resolve));
+      this.queue = [];
+      for (let i = 0; i < length; i++) {
+        const from = oldText[i] || "";
+        const to = newText[i] || "";
+        const start = Math.floor(Math.random() * 30);
+        const end = start + Math.floor(Math.random() * 50);
+        this.queue.push({ from, to, start, end });
+      }
+      cancelAnimationFrame(this.frameRequest);
+      this.frame = 0;
+      this.update();
+      return promise;
+    }
+    update() {
+      let output = "";
+      let complete = 0;
+      for (let i = 0, n = this.queue.length; i < n; i++) {
+        let { from, to, start, end, char } = this.queue[i];
+        if (this.frame >= end) {
+          complete++;
+          output += to;
+        } else if (this.frame >= start) {
+          if (!char || Math.random() < 0.1) {
+            char = this.chars[Math.floor(Math.random() * this.chars.length)];
+            this.queue[i].char = char;
+          }
+          output += `<span class="tech-char">${char}</span>`;
         } else {
-            span.dataset.originalColor = "#B0B0B0"; // Store original inactive color
+          output += from;
         }
-        heading.appendChild(span);
-        return span;
+      }
+      this.el.innerHTML = output;
+      if (complete === this.queue.length) {
+        this.resolve();
+      } else {
+        this.frameRequest = requestAnimationFrame(this.update);
+        this.frame++;
+      }
+    }
+  }
+
+  const heroTitle = document.querySelector(".hero-title");
+  if (heroTitle) {
+    const fx = new TechnicalScramble(heroTitle);
+    fx.setText(heroTitle.innerText);
+  }
+
+  // 5. INERTIAL MAGNETIC INTERACTION (Subtle & Heavy Feel)
+  const magneticElements = document.querySelectorAll(
+    ".btn, .logo, .social-links a"
+  );
+  magneticElements.forEach((el) => {
+    el.addEventListener("mousemove", (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) * 0.25; // Lower multiplier for 'heavier' feel
+      const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+      el.style.transform = `translate(${x}px, ${y}px)`;
+      el.style.transition = "transform 0.1s linear";
     });
+    el.addEventListener("mouseleave", () => {
+      el.style.transform = "translate(0px, 0px)";
+      el.style.transition = "transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)";
+    });
+  });
 
-    // We get the final active color directly from your CSS variables for consistency
-    const activeColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-color-bold').trim();
+  // 6. STRUCTURAL LATTICE PARTICLES (Neural Network Hero)
+  if (
+    document.getElementById("tsparticles") &&
+    typeof tsParticles !== "undefined"
+  ) {
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      particles: {
+        color: { value: "#ffffff" },
+        links: {
+          color: "#ffffff",
+          distance: 150,
+          enable: true,
+          opacity: 0.15, // Ultra-subtle
+          width: 1,
+        },
+        move: { enable: true, speed: 0.8, direction: "none", outModes: "out" },
+        number: { value: 50, density: { enable: true, area: 800 } },
+        opacity: { value: 0.2 },
+        shape: { type: "circle" },
+        size: { value: 1 },
+      },
+      interactivity: {
+        events: { onHover: { enable: true, mode: "grab" } },
+        modes: { grab: { distance: 200, links: { opacity: 0.5 } } },
+      },
+      detectRetina: true,
+    });
+  }
 
-    const scanEffect = (e) => {
-        chars.forEach(char => {
-            if (char.textContent === ' ') return; // Skip spaces
+  // 7. INTERSECTION OBSERVER (Advanced Content 'Scanning')
+  const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+  const scanObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("system-ready");
+        scanObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
 
-            const rect = char.getBoundingClientRect();
-            const dx = e.clientX - (rect.left + rect.width / 2);
-            const dy = e.clientY - (rect.top + rect.height / 2);
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            // The 'force' is a value from 0 (far) to 1 (close)
-            const force = Math.max(0, 1 - (distance / 120)); // 120 is the radius of influence
-
-            // Animate based on force
-            if (force > 0.1) {
-                // As the mouse gets closer, move towards the active color and lift up
-                char.style.color = activeColor;
-                char.style.transform = `translateY(${force * -5}px) scale(${1 + force * 0.05})`;
-            } else {
-                // Return to original state if mouse is far
-                char.style.color = char.dataset.originalColor;
-                char.style.transform = 'translateY(0px) scale(1)';
-            }
-        });
-    };
-    
-    // Smoothly reset all characters when the mouse leaves the heading area
-    const resetEffect = () => {
-        chars.forEach(char => {
-            if (char.textContent !== ' ') {
-                char.style.color = char.dataset.originalColor;
-                char.style.transform = 'translateY(0px) scale(1)';
-            }
-        });
-    };
-
-    heading.addEventListener('mousemove', scanEffect);
-    heading.addEventListener('mouseleave', resetEffect);
-});
-
-    // 3. MOBILE MENU TOGGLE
-    const hamburger = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('nav-active');
-            hamburger.classList.toggle('toggle');
-        });
-    }
-
-// 4. SCROLL REVEAL ANIMATIONS - REFINED
-const sr = ScrollReveal({
-    origin: 'bottom',
-    distance: '80px',
-    duration: 1200,
-    easing: 'cubic-bezier(0.5, 0, 0, 1)',
-    reset: false // Set to false for a better user experience on re-visit
-});
-
-// Staggered reveals for lists and grids
-sr.reveal('.service-item, .project-card, .value-item, .team-member-card', { interval: 150 });
-
-// Content reveals with a slide-in effect
-sr.reveal('.about-text, .contact-form-container', { origin: 'left' });
-sr.reveal('.about-image, .contact-details-container', { origin: 'right' });
-
-// Simple fade-in for headers and footers
-sr.reveal('.page-header h1, .page-header p, .section-intro, .footer-col', {
-    distance: '0px',
-    opacity: 0,
-    interval: 100
-});
-    
-    // 5. VANILLA TILT 3D EFFECT
-    if (document.querySelector('.project-card')) {
-        VanillaTilt.init(document.querySelectorAll(".project-card"), {
-            max: 15, speed: 400, glare: true, "max-glare": 0.4
-        });
-    }
-
+  document
+    .querySelectorAll("section, .project-card, .service-item")
+    .forEach((el) => {
+      scanObserver.observe(el);
+    });
 });

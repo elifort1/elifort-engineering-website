@@ -1,328 +1,532 @@
-/* ============================================= */
-/* ELIFORT ENGINEERING - V6.0 (Final Professional) */
-/* ============================================= */
-
-/*
-1.  RESET & GLOBAL VARIABLES
-2.  TYPOGRAPHY & BASIC STYLES
-3.  UTILITIES (Container, Buttons)
-4.  HEADER & NAVIGATION (Desktop)
-5.  HERO & PAGE HEADERS
-6.  GENERAL SECTION & CARD STYLES
-7.  PAGE-SPECIFIC STYLES
-8.  FOOTER
-9.  ANIMATIONS & INTERACTIVITY
-10. RESPONSIVE DESIGN (Including Mobile Nav)
+/* 
+================================================================
+ELIFORT ENGINEERING LIMITED - MASTER STYLESHEET V2.3
+Concept: Integrated User Colors + Centered Animated Hero
+================================================================
 */
 
-/* 1. RESET & GLOBAL VARIABLES */
-/* 1. RESET & GLOBAL VARIABLES - Professional Palette v3 */
 :root {
-    /* --- NEW PROFESSIONAL PALETTE --- */
-    /* Core Brand Colors */
-    --primary-color: #1A252F;      /* Deep Midnight Blue: For footer and dark backgrounds. */
-    --secondary-color: #4A6C7D;    /* Muted Teal/Steel: For buttons, links, and icons. */
-    --accent-color: #D46F52;       /* Burnt Sienna: A slightly brighter accent for hovers. */
-    --accent-color-bold: #B85B40;  /* Rich Terracotta: The unique, bold color for main headings. */
+  /* YOUR CUSTOM COLORS KEPT HERE */
+  --primary-blue: #1a2f2a;
+  --secondary-blue: #2c3e50;
+  --accent-brand: #b85b40;
+  --accent-hover: #d46f52;
+  --text-main: #333333;
+  --text-muted: #636e72;
+  --white: #bbc6e2;
 
-    /* Background & Text Colors */
-    --background-main: #FFFFFF;    /* Crisp White: The primary background for maximum readability. */
-    --background-light: #F8F6F2;   /* Warm Stone: For alternating sections, giving a premium, gallery feel. */
-    --text-color-dark: #333333;    /* Dark Gray: For all primary body text. */
-    --text-color-light: #EAEAEA;   /* Soft White: For text on dark backgrounds (easier on eyes than pure white). */
-
-    /* UI & Border Colors */
-    --border-color: #dbe1dc;       /* Softer, warm-toned gray for borders. */
-    
-    /* --- NEW PROFESSIONAL FONTS --- */
-    --font-primary: 'Montserrat', sans-serif; /* For all headings. */
-    --font-secondary: 'Lato', sans-serif;     /* For all body text. */
+  /* Technical Finishes */
+  --bg-warm: #adabab;
+  --border-soft: #2a0881;
+  --glass: rgba(119, 225, 232, 0.9);
+  --shadow-ui: 0 15px 35px rgba(221, 16, 16, 0.05);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 
-/* 2. TYPOGRAPHY & BASIC STYLES */
-/* In: 2. TYPOGRAPHY & BASIC STYLES */
+/* 1. RESET & GLOBAL STANDARDS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: var(--font-secondary);
-    line-height: 1.7;
-    color: var(--text-color-dark);
-    background-color: var(--background-light); /* <-- CHANGE: Sets the entire page background to our warm stone color */
-    overflow-x: hidden;
+  font-family: "Lato", sans-serif;
+  color: var(--text-main);
+  line-height: 1.6;
+  background-color: var(--white);
+  overflow-x: hidden;
 }
 
-main {
-    background-color: var(--background-main); /* <-- NEW: Sets the main content area to crisp white */
-    /* Optional: Add a subtle shadow to lift it off the page */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 1.5rem;
 }
 
-h1, h2, h3 { 
-    font-family: var(--font-primary); /* Now uses Montserrat */
-    line-height: 1.3; 
-    color: var(--primary-color);
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
 }
 
-h1 { font-size: 3rem; font-weight: 700; }
-
-h2 { 
-    font-size: 2.2rem; 
-    font-weight: 700;
-    text-align: center; 
-    margin-bottom: 3rem;
-    color: var(--accent-color-bold); /* APPLYING THE UNIQUE BOLD COLOR */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-h3 { 
-    font-size: 1.3rem; 
-    font-weight: 600;
-    margin-bottom: 1rem; 
+.section-padding {
+  padding: 80px 0;
+}
+.secondary-bg {
+  background-color: var(--bg-warm);
 }
 
-p { margin-bottom: 1rem; color: #555; }
-a { color: var(--secondary-color); text-decoration: none; transition: color 0.3s ease; }
-a:hover { color: var(--accent-color); }
-ul { list-style: none; }
-img { max-width: 100%; display: block; }
+/* 2. INTELLIGENCE TOP BAR */
+.top-status-bar {
+  background: var(--primary-blue);
+  color: var(--white);
+  font-size: 0.7rem;
+  padding: 10px 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-/* 3. UTILITIES */
-.container { max-width: 1140px; margin: 0 auto; padding: 0 15px; }
-.btn { display: inline-block; padding: 12px 28px; border-radius: 5px; font-weight: 600; font-family: var(--font-primary); transition: all 0.3s ease; text-align: center; }
-.btn-primary { background-color: var(--secondary-color); color: #fff; border: 2px solid var(--secondary-color); }
-.btn-primary:hover { background-color: var(--accent-color); border-color: var(--accent-color); }
-.btn-secondary { background-color: #fff; color: var(--primary-color); border: 2px solid #fff; }
-.btn-secondary:hover { background-color: transparent; color: #fff; }
+.top-status-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-/* 4. HEADER & NAVIGATION */
-.header { background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-.main-nav { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-.logo { display: flex; align-items: center; gap: 12px; }
-.logo img { height: 50px; flex-shrink: 0; }
-.logo-text { font-family: var(--font-primary); font-size: 1.2rem; font-weight: 600; color: var(--primary-color); white-space: nowrap; }
-.nav-links { display: flex; gap: 2rem; }
-.nav-links a { font-family: var(--font-primary); font-weight: 500; color: var(--primary-color); padding: 5px 0; position: relative; }
-.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
-.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-.nav-links a.active { color: var(--secondary-color); font-weight: 600; }
+.status-clock {
+  color: var(--accent-hover);
+}
 
-/* 5. HERO & PAGE HEADERS */
-.hero { min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background-color: var(--primary-color); color: #fff; }
-#tsparticles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-.hero-content { position: relative; z-index: 1; padding: 0 15px; }
-.hero-title { font-size: 3.2rem; line-height: 1.2; margin-bottom: 1rem; color: #fff; }
-.hero-subtitle { font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-color-light); max-width: 700px; margin-left: auto; margin-right: auto; }
+/* 3. MODERN GLASS HEADER */
+.header {
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-soft);
+}
 
+.main-nav {
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.logo img {
+  height: 45px;
+  width: auto;
+}
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+.accent-text {
+  color: var(--accent-brand);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+.nav-links a {
+  color: var(--primary-blue);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent-brand);
+}
+
+/* 4. PAGE HEADERS */
 .page-header {
-    padding: 60px 0; color: #fff; text-align: center; position: relative; z-index: 1;
-    background-size: cover; background-position: center; background-attachment: fixed;
-}
-.page-header::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(13, 27, 42, 0.85); z-index: -1;
-}
-.page-header h1 { font-size: 2.8rem; color: #fff; }
-
-/* Specific Page Header Backgrounds */
-body.about-page .page-header { background-image: url('../images/background\ shining\ structure.png');background-position: 50%; color: #29f805; }
-body.services-page .page-header { background-image: url('../images/beautiful\ shining\ house.png'); }
-body.projects-page .page-header { background-image: url('../images/white\ background\ picture.png'); }
-body.contact-page .page-header { background-image: url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=2070'); }
-
-/* 6. GENERAL SECTION & CARD STYLES */
-section { padding: 80px 0; }
-section:not(.hero):nth-of-type(even) { background-color: var(--background-light); }
-.section-intro { max-width: 700px; margin: 0 auto 3rem auto; text-align: center; }
-
-/* CORRECTED BACKGROUNDS: Using a pseudo-element for reliable overlay */
-.has-bg-image { position: relative; z-index: 1; }
-.has-bg-image::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover; background-position: center; background-attachment: fixed;
-    opacity: 0.07; z-index: -1;
-}
-.about-snippet.has-bg-image::before { background-image: url('../images/logo.png');  background-color: var(--primary-color); /* Adds a dark overlay using your brand color */
-    background-blend-mode:overlay;         /* Blends the image and color beautifully */
-    opacity: 0.1;                           /* Increase opacity from 0.07 to 0.1 or higher */
-}
-.core-services.has-bg-image::before { background-image: url('../images/white\ background\ picture.png');background-color: var(--primary-color); /* Adds a dark overlay using your brand color */
-    background-blend-mode:overlay;         /* Blends the image and color beautifully */
-    opacity: 0.5;                           /* Increase opacity from 0.07 to 0.1 or higher */ }
-.why-us.has-bg-image::before { background-image: url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069'); }
-
-/* In: 6. GENERAL SECTION & CARD STYLES */
-.service-card, .feature-item, .service-item, .project-card, .value-item {
-    background: #fff;
-    padding: 2.5rem 2rem; /* Increased vertical padding for more breathing room */
-    text-align: center;
-    border-radius: 8px;
-    border: 1px solid var(--border-color); /* Uses our new, softer border color */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Softer, more diffuse shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    height: 100%;
+  padding: 120px 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  color: var(--white);
+  text-align: center;
 }
 
-.service-card:hover, .feature-item:hover, .service-item:hover, .project-card:hover, .value-item:hover {
-    transform: translateY(-8px);
-    border-color: var(--secondary-color); /* Adds a subtle border highlight on hover */
-    /* Shadow uses a hint of our secondary color for a premium effect */
-    box-shadow: 0 12px 30px rgba(74, 108, 125, 0.12); 
+.about-header {
+  background-image: linear-gradient(
+      rgba(26, 37, 47, 0.8),
+      rgba(47, 26, 26, 0.8)
+    ),
+    url("../images/background shining structure.png");
 }
-.service-icon, .feature-icon, .service-icon-large, .value-icon { font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--secondary-color); }
-
-/* 7. PAGE-SPECIFIC STYLES */
-/* About Page */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-.team-grid, .values-grid, .services-page-grid, .projects-grid {
-    display: grid;
-    gap: 2.5rem; /* Standardized gap for all main content grids */
+.services-header {
+  background-image: linear-gradient(
+      rgba(26, 37, 47, 0.8),
+      rgba(26, 37, 47, 0.8)
+    ),
+    url("../images/beautiful shining house.png");
 }
-.team-member-card { text-align: center; }
-.team-photo { width: 150px; height: 250px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem auto; border: 4px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.team-title { font-style: italic; }
-.team-contact a { font-size: 1.5rem; margin: 0 0.5rem; }
-
-/* Services Page */
-/* We keep the individual column sizing as it is tailored to the content */
-.team-grid, .values-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-.services-page-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-
-/* Projects Page */
-.projects-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
-
-/* Contact Page - CORRECTED ALIGNMENT & BOUNDARIES */
-.contact-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: flex-start; }
-.contact-form-container, .contact-details-container {
-    background-color: #fff; padding: 2rem; border: 1px solid var(--border-color); border-radius: 8px;
+.projects-header {
+  background-image: linear-gradient(
+      rgba(26, 37, 47, 0.8),
+      rgba(26, 37, 47, 0.8)
+    ),
+    url("../images/white background picture.png");
 }
-.contact-form .form-group { margin-bottom: 1.5rem; }
-.contact-form label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-family: var(--font-primary); }
-.contact-form input, .contact-form textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 5px; font-family: var(--font-secondary); transition: border-color 0.3s; }
-.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.2); }
-.contact-details-list li { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
-.contact-details-list i { font-size: 1.5rem; color: var(--secondary-color); margin-top: 5px; width: 25px; text-align: center; }
-.map-section { padding: 0; line-height: 0; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin-top: 3rem; }
-
-.project-description {
-    text-align: left;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.9rem;
-    color: #555;
+.contact-header {
+  background-image: linear-gradient(
+      rgba(26, 37, 47, 0.8),
+      rgba(26, 37, 47, 0.8)
+    ),
+    url("../images/projects/engineering-website.jpeg");
 }
 
-/* 8. FOOTER - CORRECTED ALIGNMENT */
-.footer { background-color: var(--primary-color); color: var(--text-color-light); padding: 60px 0 20px 0; }
-.footer-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 3rem; /* A slightly larger gap for the footer is good practice */
+.glass-header-card {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
 }
-.footer-col { display: flex; flex-direction: column; }
-.footer-logo-container { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
-.footer-logo-container img { height: 40px; width: auto; flex-shrink: 0; }
-.footer-logo-text { font-family: var(--font-primary); font-size: 1.2rem; font-weight: 600; color: #fff; }
-.footer-tagline { color: rgba(255,255,255,0.7); margin-top: 0; font-size: 0.9rem; }
-.footer-col h3 { color: var(--secondary-color); margin-bottom: 1.5rem; font-size: 1.2rem; }
-.footer-col p, .footer-col a { color: rgba(255,255,255,0.7); }
-.footer-col a:hover { color: var(--accent-color); }
-.footer-col ul li { margin-bottom: 0.5rem; }
-.footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1.5rem; margin-top: 2rem; }
 
-/* 9. ANIMATIONS & INTERACTIVITY */
-.interactive-heading span { display: inline-block; transition: transform 0.2s, color 0.4s; }
-.interactive-heading span:hover { transform: translateY(-5px); color: var(--accent-color); }
-.social-links a { color: #fff; font-size: 1.5rem; margin-right: 1rem; display: inline-block; }
-@keyframes rotate-and-color-change { /* keyframes code remains the same */ }
-.social-icon { transition: all 0.3s ease; }
-.footer:hover .social-icon { animation: rotate-and-color-change 4s linear infinite; }
-/* stagger animation delays remain the same */
-.social-icon:hover { transform: scale(1.3); animation-play-state: paused; color: var(--accent-color) !important; }
+.glass-header-card h1 {
+  color: var(--white);
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+.glass-header-card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
 
-/* 10. RESPONSIVE DESIGN - FOOLPROOF MOBILE NAVIGATION */
-.hamburger-menu { display: none; cursor: pointer; position: relative; z-index: 1001; }
-.hamburger-menu .bar { width: 25px; height: 3px; background-color: var(--primary-color); margin: 5px 0; transition: all 0.3s ease; }
-@media (max-width: 992px) {
-    h1 { font-size: 2.8rem; }
-    h2 { font-size: 2.2rem; }
-    .logo-text { font-size: 1rem; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; }
-    .about-image { grid-row: 1; margin: 0 auto 2rem auto; }
+/* 5. CENTERED & ANIMATED HERO SECTION (NEW FIX) */
+.hero {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Centers all child text */
+  position: relative;
+  background-color: var(--secondary-blue);
+  /* AI-Network Professional Background */
+  background-image: linear-gradient(
+      rgba(26, 47, 42, 0.7),
+      rgba(44, 62, 80, 0.7)
+    ),
+    url("https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
 }
-@media (max-width: 768px) {
-    /* .logo-text { display: none; } <-- We removed this line */
-    .logo-text { 
-        font-size: 0.9rem; /* Make the font slightly smaller on mobile */
-        white-space: normal; /* Allow it to wrap if necessary, though unlikely */
-        line-height: 1.2;
-    }
 
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-    .main-nav .btn-primary { display: none; }
-    .hamburger-menu { display: block; }
-    .toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
-    .toggle .bar:nth-child(2) { opacity: 0; }
-    .toggle .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
-    .nav-links {
-        position: fixed; top: 0; right: -100%; /* Start completely off-screen */
-        height: 100vh; width: 80%; max-width: 300px;
-        background-color: var(--primary-color);
-        flex-direction: column; justify-content: center;
-        transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    }
-    .nav-links.nav-active { right: 0; }
-    .nav-links a { color: #fff; font-size: 1.2rem; }
-}
-/* 11. WORLD-CLASS INTERACTIVITY */
-/* ============================================= */
 
-/* Cursor Hover States */
-a:hover ~ .cursor-outline, .btn:hover ~ .cursor-outline, .hamburger-menu:hover ~ .cursor-outline {
-    transform: translate(-50%, -50%) scale(1.5);
-    background-color: rgba(74, 108, 125, 0.2); /* Muted Teal with transparency */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 1.2s ease-out; /* Premium Entrance Animation */
 }
-a:hover ~ .cursor-dot, .btn:hover ~ .cursor-dot, .hamburger-menu:hover ~ .cursor-dot {
-    opacity: 0;
+
+.badge {
+  display: inline-block;
+  background: var(--accent-brand);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 15px rgba(184, 91, 64, 0.3);
 }
-/* Blueprint Grid Overlay on Service Items */
+
+.hero-title {
+  font-size: 4.5rem;
+  color: #fff; /* Clean white for high visibility */
+  line-height: 1.2;
+  margin-bottom: 30px;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  max-width: 650px;
+  margin: 0 auto 40px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* 6. "WHY PARTNER WITH US?" - CENTERED & JUSTIFIED */
+.why-us {
+  text-align: center;
+}
+.why-us h2 {
+  margin-bottom: 40px;
+}
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  text-align: center;
+}
+.feature-list li {
+  padding: 30px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-ui);
+  transition: var(--transition);
+}
+.feature-list li:hover {
+  transform: translateY(-5px);
+}
+.feature-list i {
+  font-size: 2.5rem;
+  color: var(--accent-brand);
+  margin-bottom: 20px;
+  display: block;
+}
+.feature-list h4 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+.feature-list p {
+  text-align: justify;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* 7. SERVICES & LEADERSHIP */
+.service-cluster {
+  padding-bottom: 60px;
+}
+.cluster-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
 .service-item {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+  background: var(--white);
+  padding: 40px;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  transition: var(--transition);
+}
+.service-item:hover {
+  box-shadow: var(--shadow-ui);
+  border-color: var(--accent-brand);
+}
+.service-item i {
+  font-size: 2rem;
+  color: var(--accent-brand);
+  margin-bottom: 20px;
+  display: block;
+}
+.service-item p {
+  text-align: justify;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
-.service-item::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-image: 
-        linear-gradient(var(--border-color) 1px, transparent 1px), 
-        linear-gradient(to right, var(--border-color) 1px, transparent 1px);
-    background-size: 30px 30px;
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  justify-content: center;
+}
+.team-card {
+  background: var(--white);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow-ui);
+  text-align: center;
+}
+.member-image {
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+.member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.member-info {
+  padding: 25px;
+}
+.role {
+  color: var(--accent-brand);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+/* 8. FOOTER REFINEMENT */
+.footer {
+  background: var(--primary-blue);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 80px 0 20px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.brand-col .footer-logo img {
+  height: 40px;
+  margin-bottom: 20px;
+}
+.footer-logo span {
+  color: var(--white);
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+.social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.social-links a {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 0.9rem;
+}
+.social-links a:hover {
+  background: var(--accent-brand);
+  transform: translateY(-3px);
+}
+
+/* 9. BUTTONS */
+.btn {
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+.btn-primary {
+  background: var(--accent-brand);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+.btn-secondary:hover {
+  background: #fff;
+  color: var(--primary-blue);
+}
+
+/* 10. ANIMATIONS KEYFRAMES */
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-    z-index: -1;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.service-item:hover::before {
-    opacity: 0.3;
+/* 11. RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  .glass-header-card h1 {
+    font-size: 2rem;
+  }
+  .nav-links {
+    display: none;
+  }
+  .feature-list,
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* --- Intelligence Micro-Animations --- */
+
+/* Sonar Radar Ping */
+.radar-ping {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: rgba(184, 91, 64, 0.5); /* Brand Terracotta */
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: sonar 0.8s ease-out forwards;
+  z-index: 9999;
 }
 
-/* Ensure content stays above the grid */
-.service-item > * {
-    position: relative;
-    z-index: 2;
-}
-/* Blueprint Scan Interactive Heading */
-.interactive-heading {
-    cursor: default; /* Use a standard cursor */
+@keyframes sonar {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border: 1px solid var(--accent-brand);
+  }
+  100% {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+    border: 1px solid transparent;
+  }
 }
 
-.interactive-heading span {
-    display: inline-block; /* Allows for transform */
-    color: #B0B0B0; /* The 'inactive' blueprint color - a soft gray */
-    transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+/* Decryption Text Span */
+.tech-char {
+  color: var(--accent-brand);
+  font-family: monospace;
+  opacity: 0.8;
+}
+
+/* Scroll Progress indicator (replaces old one) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--scroll-width, 0%);
+  height: 3px;
+  background: var(--accent-brand);
+  z-index: 10001;
+  transition: width 0.1s linear;
 }
