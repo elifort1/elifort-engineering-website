@@ -1,6 +1,7 @@
 /**
- * ELIFORT ENGINEERING LIMITED - INTELLIGENCE ENGINE V3.0
- * Concept: Technical Precision, Structural Integrity, & Advanced System Logic
+ * ELIFORT ENGINEERING LIMITED - INTELLIGENCE ENGINE V3.1
+ * Concept: Clinical Precision, Structural Integrity, & Performance Analytics
+ * Changes: Removed Scramble, Added Reading Bar Logic, Added Mobile Menu
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,7 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  // 2. KAMPALA PRECISION CLOCK
+  // 2. SCROLL PROGRESS LOGIC (Activates the Reading Bar)
+  window.addEventListener("scroll", () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    // This updates the CSS variable --scroll-width used in your style.css
+    document.documentElement.style.setProperty('--scroll-width', scrolled + '%');
+  });
+
+  // 3. KAMPALA PRECISION CLOCK
   const updateClock = () => {
     const clockElements = document.querySelectorAll(".status-clock");
     if (clockElements.length > 0) {
@@ -33,8 +43,24 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateClock, 1000);
   updateClock();
 
-  // 3. TECHNICAL RADAR PING (Global Click Interaction)
-  // Replaces childish bursts with a professional 'sonar' pulse
+  // 4. MOBILE MENU TOGGLE (Essential for Phone Visibility)
+  const hamburger = document.querySelector(".hamburger-menu");
+  const navLinks = document.querySelector(".nav-links");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      hamburger.classList.toggle("toggle");
+      
+      // Prevent scrolling when menu is open
+      if(navLinks.classList.contains("active")) {
+          document.body.style.overflow = "hidden";
+      } else {
+          document.body.style.overflow = "initial";
+      }
+    });
+  }
+
+  // 5. TECHNICAL RADAR PING (Global Click Interaction)
   document.addEventListener("click", (e) => {
     const ping = document.createElement("div");
     ping.className = "radar-ping";
@@ -44,72 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => ping.remove(), 800);
   });
 
-  // 4. DATA DECRYPTION EFFECT (Hero Title)
-  class TechnicalScramble {
-    constructor(el) {
-      this.el = el;
-      this.chars = "01ABCDEF-/_+X#";
-      this.update = this.update.bind(this);
-    }
-    setText(newText) {
-      const oldText = this.el.innerText;
-      const length = Math.max(oldText.length, newText.length);
-      const promise = new Promise((resolve) => (this.resolve = resolve));
-      this.queue = [];
-      for (let i = 0; i < length; i++) {
-        const from = oldText[i] || "";
-        const to = newText[i] || "";
-        const start = Math.floor(Math.random() * 30);
-        const end = start + Math.floor(Math.random() * 50);
-        this.queue.push({ from, to, start, end });
-      }
-      cancelAnimationFrame(this.frameRequest);
-      this.frame = 0;
-      this.update();
-      return promise;
-    }
-    update() {
-      let output = "";
-      let complete = 0;
-      for (let i = 0, n = this.queue.length; i < n; i++) {
-        let { from, to, start, end, char } = this.queue[i];
-        if (this.frame >= end) {
-          complete++;
-          output += to;
-        } else if (this.frame >= start) {
-          if (!char || Math.random() < 0.1) {
-            char = this.chars[Math.floor(Math.random() * this.chars.length)];
-            this.queue[i].char = char;
-          }
-          output += `<span class="tech-char">${char}</span>`;
-        } else {
-          output += from;
-        }
-      }
-      this.el.innerHTML = output;
-      if (complete === this.queue.length) {
-        this.resolve();
-      } else {
-        this.frameRequest = requestAnimationFrame(this.update);
-        this.frame++;
-      }
-    }
-  }
-
-  const heroTitle = document.querySelector(".hero-title");
-  if (heroTitle) {
-    const fx = new TechnicalScramble(heroTitle);
-    fx.setText(heroTitle.innerText);
-  }
-
-  // 5. INERTIAL MAGNETIC INTERACTION (Subtle & Heavy Feel)
-  const magneticElements = document.querySelectorAll(
-    ".btn, .logo, .social-links a"
-  );
+  // 6. INERTIAL MAGNETIC INTERACTION (Subtle & Heavy Feel)
+  const magneticElements = document.querySelectorAll(".btn, .logo, .social-links a");
   magneticElements.forEach((el) => {
     el.addEventListener("mousemove", (e) => {
       const rect = el.getBoundingClientRect();
-      const x = (e.clientX - rect.left - rect.width / 2) * 0.25; // Lower multiplier for 'heavier' feel
+      const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
       const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
       el.style.transform = `translate(${x}px, ${y}px)`;
       el.style.transition = "transform 0.1s linear";
@@ -120,11 +86,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 6. STRUCTURAL LATTICE PARTICLES (Neural Network Hero)
-  if (
-    document.getElementById("tsparticles") &&
-    typeof tsParticles !== "undefined"
-  ) {
+  // 7. PROJECT FILTERING LOGIC
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  if (filterBtns.length > 0) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filterValue = btn.getAttribute("data-filter");
+
+        projectCards.forEach((card) => {
+          const cardCategory = card.getAttribute("data-category");
+          if (filterValue === "all" || filterValue === cardCategory) {
+            card.style.display = "flex";
+            setTimeout(() => { card.style.opacity = "1"; }, 10);
+          } else {
+            card.style.opacity = "0";
+            setTimeout(() => { card.style.display = "none"; }, 300);
+          }
+        });
+      });
+    });
+  }
+
+  // 8. STRUCTURAL LATTICE PARTICLES (Neural Network Hero)
+  if (document.getElementById("tsparticles") && typeof tsParticles !== "undefined") {
     tsParticles.load("tsparticles", {
       fpsLimit: 60,
       particles: {
@@ -133,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
           color: "#ffffff",
           distance: 150,
           enable: true,
-          opacity: 0.15, // Ultra-subtle
+          opacity: 0.15,
           width: 1,
         },
         move: { enable: true, speed: 0.8, direction: "none", outModes: "out" },
@@ -149,21 +138,4 @@ document.addEventListener("DOMContentLoaded", () => {
       detectRetina: true,
     });
   }
-
-  // 7. INTERSECTION OBSERVER (Advanced Content 'Scanning')
-  const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-  const scanObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("system-ready");
-        scanObserver.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document
-    .querySelectorAll("section, .project-card, .service-item")
-    .forEach((el) => {
-      scanObserver.observe(el);
-    });
 });
